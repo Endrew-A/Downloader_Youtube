@@ -3,4 +3,14 @@ Ferramenta criada com o intuito de acelerar a busca por meios de baixar vídeos 
 
 Uso de IA:
 
--Comandos da biblioteca "Youtube Explode"
+-Comandos da biblioteca "Youtube Explode".
+
+---
+
+Features a serem implementadas:
+
+-Uso do ffmpeg para baixar vídeos com som.
+
+-Melhorias visuais.
+
+-Gerenciamento de downloads.
