@@ -205,7 +205,7 @@
             // 
             cmboxQualidade.DropDownStyle = ComboBoxStyle.DropDownList;
             cmboxQualidade.FormattingEnabled = true;
-            cmboxQualidade.Items.AddRange(new object[] { "720p", "1080p" });
+            cmboxQualidade.Items.AddRange(new object[] { "Melhor qualidade", "720p", "1080p" });
             cmboxQualidade.Location = new Point(12, 82);
             cmboxQualidade.Name = "cmboxQualidade";
             cmboxQualidade.Size = new Size(121, 23);
@@ -247,6 +247,7 @@
             Controls.Add(panelHelp);
             Controls.Add(panelButtons);
             Font = new Font("Arial", 9F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Main";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Downloader de vídeos (sem áudio) e áudios do YouTube";

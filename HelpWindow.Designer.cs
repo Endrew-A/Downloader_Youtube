@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelpWindow));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -108,6 +109,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Arial", 9F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MaximumSize = new Size(534, 192);
             MinimumSize = new Size(534, 192);

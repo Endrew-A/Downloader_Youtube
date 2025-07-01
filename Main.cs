@@ -120,22 +120,42 @@ namespace Downloader_Youtube
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(url);
 
             // seleciona o vídeo e a qualidade
-            var videoStreamInfo = streamManifest
-            .GetVideoOnlyStreams()
-            .Where(s => s.VideoQuality.Label == cmboxQualidade.Text)
-            .FirstOrDefault();
-
-            if (videoStreamInfo != null)
+            if (cmboxQualidade.SelectedIndex != 0)
             {
-                string nome = txtNomevideo.Text + ".mp4";
-                string local = Path.Combine(caminho, nome);
+                var videoStreamInfo = streamManifest
+                .GetVideoOnlyStreams()
+                .Where(s => s.VideoQuality.Label == cmboxQualidade.Text)
+                .FirstOrDefault();
+            
+                if (videoStreamInfo != null)
+                {
+                    string nome = txtNomevideo.Text + ".mp4";
+                    string local = Path.Combine(caminho, nome);
 
-                await youtube.Videos.Streams.DownloadAsync(videoStreamInfo, local);
-                MessageBox.Show("Download do vídeo concluído com sucesso!", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await youtube.Videos.Streams.DownloadAsync(videoStreamInfo, local);
+                    MessageBox.Show("Download do vídeo concluído com sucesso!", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                   MessageBox.Show("Não foi possível encontrar o vídeo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Não foi possível encontrar o vídeo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var videoStreamInfo = streamManifest.GetVideoOnlyStreams().GetWithHighestVideoQuality();
+
+                if (videoStreamInfo != null)
+                {
+                    string nome = txtNomevideo.Text + ".mp4";
+                    string local = Path.Combine(caminho, nome);
+
+                    await youtube.Videos.Streams.DownloadAsync(videoStreamInfo, local);
+                    MessageBox.Show("Download do vídeo concluído com sucesso!", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                   MessageBox.Show("Não foi possível baixar o vídeo, verifique se a qualidade selecionada existe no vídeo original.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
