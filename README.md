@@ -14,3 +14,9 @@ Features a serem implementadas:
 -Melhorias visuais.
 
 -Gerenciamento de downloads.
+
+---
+Screenshots
+---
+
+![Print da versão v0.1](docs/print2v0.1.png)
